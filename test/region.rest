@@ -1,0 +1,26 @@
+### Get Region
+GET http://localhost:3000/region
+
+### Get Region By Id
+GET http://localhost:3000/region/1
+
+### Add Region
+POST http://localhost:3000/region
+Content-Type: application/json
+
+{
+    "region_name" : "Atlantica",
+}
+
+### Update Region
+PUT http://localhost:3000/region/Mr
+Content-Type: application/json
+
+{
+    "region_id" : "MR",
+    "region_name" : "Myanmar",
+    "region_id" : 3
+}
+
+### Delete Region
+DELETE http://localhost:3000/region/MR
