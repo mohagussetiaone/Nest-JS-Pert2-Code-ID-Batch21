@@ -1,3 +1,5 @@
+import { ProdukController } from './../produk/produk.controller';
+import { ProdukService } from './../produk/produk.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { JwtModule } from '@nestjs/jwt';
 import { Module } from '@nestjs/common';
@@ -60,6 +62,7 @@ import { Product } from 'output/entities/Product';
     LocalGuard,
     JwtGuard,
     UserService,
+    ProdukService,
   ],
   controllers: [
     // ControllerController,
@@ -67,6 +70,7 @@ import { Product } from 'output/entities/Product';
     // DepartmentsController,
     // EmployeesController,
     UserController,
+    ProdukController,
   ],
   exports: [UserService],
 })

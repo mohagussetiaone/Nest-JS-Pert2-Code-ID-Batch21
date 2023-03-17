@@ -30,7 +30,7 @@ export class UserService {
     }
   }
 
-  public async validateUser(username: string, pass: string) {
+  public async validateUser(username: string, password: string) {
     const user = await this.userRepo.findOne({
       where: { username: username },
       relations: {
@@ -42,7 +42,7 @@ export class UserService {
         },
       },
     });
-    const compare = await Bcrypt.compare(pass, user.password);
+    const compare = await Bcrypt.compare(password, user.password);
 
     if (compare) {
       return user;
@@ -50,7 +50,6 @@ export class UserService {
   }
 
   public async login(user: any) {
-    console.log(user);
     const payload = {
       username: user.username,
       password: user.password,

@@ -18,6 +18,8 @@ import { ModuleModule } from './module/module.module';
     }),
     ModuleModule,
   ],
+  providers: [],
+  controllers: [],
   // providers: [],
   // controllers: [],
 })
