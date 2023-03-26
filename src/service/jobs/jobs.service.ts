@@ -15,9 +15,15 @@ export class JobsService {
     return await this.serviceRepo.find({ where: { jobId: id } });
   }
 
-  public async addJobs(jobTitle: string, minSalary: string, maxSalary: string) {
+  public async addJobs(
+    jobId: string,
+    jobTitle: string,
+    minSalary: string,
+    maxSalary: string,
+  ) {
     try {
       const jobs = await this.serviceRepo.save({
+        jobId: jobId,
         jobTitle: jobTitle,
         minSalary: minSalary,
         maxSalary: maxSalary,
@@ -36,6 +42,7 @@ export class JobsService {
   ) {
     try {
       const jobs = await this.serviceRepo.update(jobId, {
+        jobId: jobId,
         jobTitle: jobTitle,
         minSalary: minSalary,
         maxSalary: maxSalary,

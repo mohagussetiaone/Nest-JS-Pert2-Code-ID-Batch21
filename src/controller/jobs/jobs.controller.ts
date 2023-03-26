@@ -25,16 +25,18 @@ export class JobsController {
 
   @Post()
   public async Create(
+    @Body('jobId') jobId: string,
     @Body('jobTitle') jobTitle: string,
     @Body('minSalary') minSalary: string,
     @Body('maxSalary') maxSalary: string,
   ) {
-    return await this.Services.addJobs(jobTitle, minSalary, maxSalary);
+    return await this.Services.addJobs(jobId, jobTitle, minSalary, maxSalary);
   }
 
-  @Put(':jobId')
+  @Put(':id')
   public async Update(
-    @Param('jobId') jobId: string,
+    @Param('id') id: string,
+    @Body('jobId') jobId: string,
     @Body('jobTitle') jobTitle: string,
     @Body('minSalary') minSalary: string,
     @Body('maxSalary') maxSalary: string,
@@ -47,8 +49,8 @@ export class JobsController {
     );
   }
 
-  @Delete(':jobId')
-  public async Delete(@Param('jobId') jobId: string) {
+  @Delete(':id')
+  public async Delete(@Param('id') jobId: string) {
     return await this.Services.deleteJobs(jobId);
   }
 }

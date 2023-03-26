@@ -1,3 +1,4 @@
+import { Countries } from 'output/entities/Countries';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Locations } from 'output/entities/Locations';
@@ -10,11 +11,20 @@ export class LocationsService {
   ) {}
 
   public async getLocations() {
-    return await this.serviceRepo.find();
+    return await this.serviceRepo.find({
+      relations: {
+        country: true,
+      },
+    });
   }
 
   public async getLocationById(id: number) {
-    return await this.serviceRepo.find({ where: { locationId: id } });
+    return await this.serviceRepo.find({
+      where: { locationId: id },
+      relations: {
+        country: true,
+      },
+    });
   }
 
   public async addLocations(
@@ -22,6 +32,7 @@ export class LocationsService {
     postalCode: string,
     city: string,
     stateProvince: string,
+    countryId: Countries,
   ) {
     try {
       const locations = await this.serviceRepo.save({
@@ -29,6 +40,7 @@ export class LocationsService {
         postalCode: postalCode,
         city: city,
         stateProvince: stateProvince,
+        country: countryId,
       });
       return locations;
     } catch (error) {
@@ -42,6 +54,7 @@ export class LocationsService {
     postalCode: string,
     city: string,
     stateProvince: string,
+    countryId: Countries,
   ) {
     try {
       const locations = await this.serviceRepo.update(locationId, {
@@ -49,6 +62,7 @@ export class LocationsService {
         postalCode: postalCode,
         city: city,
         stateProvince: stateProvince,
+        country: countryId,
       });
       return locations;
     } catch (error) {
