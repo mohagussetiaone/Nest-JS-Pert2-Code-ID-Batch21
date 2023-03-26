@@ -12,7 +12,12 @@ export class EmployeesService {
     @InjectRepository(Employees) private serviceRepo: Repository<Employees>,
   ) {}
   public async getEmployees() {
-    return await this.serviceRepo.find();
+    return await this.serviceRepo.find({
+      relations: {
+        job: true,
+        department: true,
+      },
+    });
   }
 
   public async getEmployeesById(id: number) {
@@ -20,33 +25,37 @@ export class EmployeesService {
       where: {
         employeeId: id,
       },
+      relations: {
+        job: true,
+        department: true,
+      },
     });
   }
 
   public async addEmployees(
-    first_name: string,
-    last_name: string,
+    firstName: string,
+    lastName: string,
     email: string,
-    phone_number: string,
-    hire_date: string,
+    phoneNumber: string,
+    hireDate: string,
     salary: string,
-    commission_pct: string,
-    job_id: Jobs,
-    manager_id: number,
-    department_id: Departments,
+    commissionPct: string,
+    jobId: Jobs,
+    managerId: number,
+    departmentId: Departments,
   ) {
     try {
       const employees = await this.serviceRepo.save({
-        firstName: first_name,
-        lastName: last_name,
+        firstName: firstName,
+        lastName: lastName,
         email: email,
-        phoneNumber: phone_number,
-        hireDate: hire_date,
+        phoneNumber: phoneNumber,
+        hireDate: hireDate,
         salary: salary,
-        commissionPct: commission_pct,
-        job: job_id,
-        managerId: manager_id,
-        department: department_id,
+        commissionPct: commissionPct,
+        job: jobId,
+        managerId: managerId,
+        department: departmentId,
       });
       return employees;
     } catch (error) {
@@ -55,30 +64,30 @@ export class EmployeesService {
   }
 
   public async UpdateEmployees(
-    employee_id: number,
-    first_name: string,
-    last_name: string,
+    employeeId: number,
+    firstName: string,
+    lastName: string,
     email: string,
-    phone_number: string,
-    hire_date: string,
+    phoneNumber: string,
+    hireDate: string,
     salary: string,
-    commission_pct: string,
-    job_id: Jobs,
-    manager_id: number,
-    department_id: Departments,
+    commissionPct: string,
+    jobId: Jobs,
+    managerId: number,
+    departmentId: Departments,
   ) {
     try {
-      const employees = await this.serviceRepo.update(employee_id, {
-        firstName: first_name,
-        lastName: last_name,
+      const employees = await this.serviceRepo.update(employeeId, {
+        firstName: firstName,
+        lastName: lastName,
         email: email,
-        phoneNumber: phone_number,
-        hireDate: hire_date,
+        phoneNumber: phoneNumber,
+        hireDate: hireDate,
         salary: salary,
-        commissionPct: commission_pct,
-        job: job_id,
-        managerId: manager_id,
-        department: department_id,
+        commissionPct: commissionPct,
+        job: jobId,
+        managerId: managerId,
+        department: departmentId,
       });
       return employees;
     } catch (error) {

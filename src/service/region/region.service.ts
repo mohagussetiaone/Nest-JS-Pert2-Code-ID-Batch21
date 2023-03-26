@@ -4,7 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 @Injectable()
-export class ServiceService {
+export class RegionService {
   constructor(
     // Untuk masuk kedalam region kemudian service akan masuk kedalam repo defini dari regions
     @InjectRepository(Regions) private serviceRepo: Repository<Regions>,
@@ -22,10 +22,10 @@ export class ServiceService {
     });
   }
 
-  public async Create(region_name: string) {
+  public async Create(regionName: string) {
     try {
       const region = await this.serviceRepo.save({
-        regionName: region_name,
+        regionName: regionName,
       });
       return region;
     } catch (error) {
@@ -33,10 +33,10 @@ export class ServiceService {
     }
   }
 
-  public async Update(id: number, region_name: string) {
+  public async Update(id: number, regionName: string) {
     try {
       const region = await this.serviceRepo.update(id, {
-        regionName: region_name,
+        regionName: regionName,
       });
       return region;
     } catch (error) {

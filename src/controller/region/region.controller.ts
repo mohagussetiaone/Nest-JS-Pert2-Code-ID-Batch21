@@ -1,4 +1,4 @@
-import { ServiceService } from './../service/service.service';
+import { RegionService } from 'src/service/region/region.service';
 import {
   Body,
   Controller,
@@ -11,9 +11,9 @@ import {
 
 // Router
 @Controller('/region')
-export class ControllerController {
+export class RegionController {
   // Untuk mengarahkan data dari controller ke class
-  constructor(private Services: ServiceService) {}
+  constructor(private Services: RegionService) {}
 
   @Get()
   public async getAll() {
@@ -27,16 +27,16 @@ export class ControllerController {
   }
 
   @Post()
-  public async Create(@Body('region_name') region_name: string) {
-    return await this.Services.Create(region_name);
+  public async Create(@Body('regionName') regionName: string) {
+    return await this.Services.Create(regionName);
   }
 
   @Put(':id')
   public async Update(
     @Param('id') id: number,
-    @Body('region_name') region_name: string,
+    @Body('regionName') regionName: string,
   ) {
-    return await this.Services.Update(id, region_name);
+    return await this.Services.Update(id, regionName);
   }
 
   @Delete(':id')

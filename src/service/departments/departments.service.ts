@@ -12,7 +12,12 @@ export class DepartmentsService {
   ) {}
 
   public async getDepartment() {
-    return await this.serviceRepo.find();
+    return await this.serviceRepo.find({
+      relations: {
+        location: true,
+        manager: true,
+      },
+    });
   }
 
   public async getDepartmentById(id: number) {
@@ -20,19 +25,25 @@ export class DepartmentsService {
       where: {
         departmentId: id,
       },
+      relations: {
+        location: true,
+        manager: true,
+      },
     });
   }
 
   public async addDepartment(
-    department_name: string,
-    manager_id: Locations,
-    location_id: Locations,
+    departmentId: number,
+    departmentName: string,
+    managerId: Locations,
+    locationId: Locations,
   ) {
     try {
       const department = await this.serviceRepo.save({
-        departmentName: department_name,
-        manager: manager_id,
-        location: location_id,
+        departmentId: departmentId,
+        departmentName: departmentName,
+        manager: managerId,
+        location: locationId,
       });
       return department;
     } catch (error) {
@@ -41,16 +52,16 @@ export class DepartmentsService {
   }
 
   public async UpdateDepartment(
-    department_id: number,
-    department_name: string,
-    manager_id: Locations,
-    location_id: Locations,
+    departmentId: number,
+    departmentName: string,
+    managerId: Locations,
+    locationId: Locations,
   ) {
     try {
-      const department = await this.serviceRepo.update(department_id, {
-        departmentName: department_name,
-        manager: manager_id,
-        location: location_id,
+      const department = await this.serviceRepo.update(departmentId, {
+        departmentName: departmentName,
+        manager: managerId,
+        location: locationId,
       });
       return department;
     } catch (error) {

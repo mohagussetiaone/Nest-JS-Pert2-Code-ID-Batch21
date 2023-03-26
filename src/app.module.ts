@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ModuleModule } from './module/module.module';
-
 @Module({
   // Membuat jalur untuk inisialisasi schema
   imports: [
@@ -11,7 +10,7 @@ import { ModuleModule } from './module/module.module';
       port: 5432,
       username: 'postgres',
       password: 'A6u5I5NeX',
-      database: 'nestjs',
+      database: 'hr-db',
       entities: ['dist/output/entities/*.js'],
       synchronize: false,
       autoLoadEntities: true,
@@ -20,7 +19,5 @@ import { ModuleModule } from './module/module.module';
   ],
   providers: [],
   controllers: [],
-  // providers: [],
-  // controllers: [],
 })
 export class AppModule {}

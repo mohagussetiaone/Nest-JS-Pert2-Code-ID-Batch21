@@ -1,5 +1,5 @@
+import { Jobs } from './../../../output/entities/Jobs';
 import { Departments } from 'output/entities/Departments';
-import { Jobs } from 'output/entities/Jobs';
 import { EmployeesService } from '../../service/employees/employees.service';
 import {
   Body,
@@ -27,57 +27,57 @@ export class EmployeesController {
 
   @Post()
   public async Create(
-    @Body('first_name, ') first_name: string,
-    @Body('last_name') last_name: string,
-    @Body('email, ') email: string,
-    @Body('phone_number, ') phone_number: string,
-    @Body('hire_date, ') hire_date: string,
-    @Body('salary, ') salary: string,
-    @Body('commission_pct, ') commission_pct: string,
-    @Body('job_id, ') job_id: Jobs,
-    @Body('manager_id, ') manager_id: number,
-    @Body('department_id, ') department_id: Departments,
+    @Body('firstName') firstName: string,
+    @Body('lastName') lastName: string,
+    @Body('email') email: string,
+    @Body('phoneNumber') phoneNumber: string,
+    @Body('hireDate') hireDate: string,
+    @Body('salary') salary: string,
+    @Body('commissionPct') commissionPct: string,
+    @Body('jobId') jobId: Jobs,
+    @Body('managerId') managerId: number,
+    @Body('departmentId') departmentId: Departments,
   ) {
     return await this.Services.addEmployees(
-      first_name,
-      last_name,
+      firstName,
+      lastName,
       email,
-      phone_number,
-      hire_date,
+      phoneNumber,
+      hireDate,
       salary,
-      commission_pct,
-      job_id,
-      manager_id,
-      department_id,
+      commissionPct,
+      jobId,
+      managerId,
+      departmentId,
     );
   }
 
   @Put(':id')
   public async Update(
     @Param('id') id: number,
-    @Body('first_name, ') first_name: string,
-    @Body('last_name') last_name: string,
-    @Body('email, ') email: string,
-    @Body('phone_number, ') phone_number: string,
-    @Body('hire_date, ') hire_date: string,
-    @Body('salary, ') salary: string,
-    @Body('commission_pct, ') commission_pct: string,
-    @Body('job_id, ') job_id: Jobs,
-    @Body('manager_id, ') manager_id: number,
-    @Body('department_id, ') department_id: Departments,
+    @Body('firstName') firstName: string,
+    @Body('lastName') lastName: string,
+    @Body('email') email: string,
+    @Body('phoneNumber') phoneNumber: string,
+    @Body('hireDate') hireDate: string,
+    @Body('salary') salary: string,
+    @Body('commissionPct') commissionPct: string,
+    @Body('jobId') jobId: Jobs,
+    @Body('managerId') managerId: number,
+    @Body('departmentId') departmentId: Departments,
   ) {
     return await this.Services.UpdateEmployees(
       id,
-      first_name,
-      last_name,
+      firstName,
+      lastName,
       email,
-      phone_number,
-      hire_date,
+      phoneNumber,
+      hireDate,
       salary,
-      commission_pct,
-      job_id,
-      manager_id,
-      department_id,
+      commissionPct,
+      jobId,
+      managerId,
+      departmentId,
     );
   }
 

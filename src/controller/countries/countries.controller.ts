@@ -27,24 +27,20 @@ export class CountriesController {
 
   @Post()
   public async Create(
-    @Body('country_id') country_id: string,
-    @Body('country_name') country_name: string,
-    @Body('region_id') region_id,
+    @Body('countryId') countryId: string,
+    @Body('countryName') countryName: string,
+    @Body('regionId') regionId,
   ) {
-    return await this.Services.addCountries(
-      country_id,
-      country_name,
-      region_id,
-    );
+    return await this.Services.addCountries(countryId, countryName, regionId);
   }
 
   @Put(':id')
   public async Update(
     @Param('id') id: number,
-    @Body('country_name') country_name: string,
-    @Body('region_id') region_id,
+    @Body('countryName') countryName: string,
+    @Body('regionId') regionId,
   ) {
-    return await this.Services.UpdateCountries(id, country_name, region_id);
+    return await this.Services.UpdateCountries(id, countryName, regionId);
   }
 
   @Delete(':id')

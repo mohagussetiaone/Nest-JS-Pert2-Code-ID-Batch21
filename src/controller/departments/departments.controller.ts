@@ -27,29 +27,31 @@ export class DepartmentsController {
 
   @Post()
   public async Create(
-    @Body('department_name, ') department_name: string,
-    @Body('manager_id') manager_id: Locations,
-    @Body('location_id, ') location_id: Locations,
+    @Body('deparmentId') departmentId: number,
+    @Body('departmentName') departmentName: string,
+    @Body('managerId') managerId: Locations,
+    @Body('locationId') locationId: Locations,
   ) {
     return await this.Services.addDepartment(
-      department_name,
-      manager_id,
-      location_id,
+      departmentId,
+      departmentName,
+      managerId,
+      locationId,
     );
   }
 
-  @Put(':id')
+  @Put(':departmentId')
   public async Update(
-    @Param('id') id: number,
-    @Body('department_name') department_name: string,
-    @Body('manager_id') manager_id: Locations,
-    @Body('location_id') location_id: Locations,
+    @Param('departmentId') departmentId: number,
+    @Body('departmentName') departmentName: string,
+    @Body('managerId') managerId: Locations,
+    @Body('locationId') locationId: Locations,
   ) {
     return await this.Services.UpdateDepartment(
-      id,
-      department_name,
-      manager_id,
-      location_id,
+      departmentId,
+      departmentName,
+      managerId,
+      locationId,
     );
   }
 

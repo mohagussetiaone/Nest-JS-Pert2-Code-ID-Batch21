@@ -11,7 +11,11 @@ export class CountriesService {
   ) {}
 
   public async getCountries() {
-    return await this.serviceRepo.find();
+    return await this.serviceRepo.find({
+      relations: {
+        region: true,
+      },
+    });
   }
 
   public async getCountriesById(id: string) {
@@ -19,19 +23,18 @@ export class CountriesService {
       where: {
         countryId: id,
       },
+      relations: {
+        region: true,
+      },
     });
   }
 
-  public async addCountries(
-    country_id: string,
-    country_name: string,
-    region_id,
-  ) {
+  public async addCountries(countryId: string, countryName: string, regionId) {
     try {
       const countries = await this.serviceRepo.save({
-        countryId: country_id,
-        countryName: country_name,
-        region: region_id,
+        countryId: countryId,
+        countryName: countryName,
+        region: regionId,
       });
       return countries;
     } catch (error) {
@@ -39,11 +42,11 @@ export class CountriesService {
     }
   }
 
-  public async UpdateCountries(id: number, country_name: string, region_id) {
+  public async UpdateCountries(id: number, countryName: string, regionId) {
     try {
       const countries = await this.serviceRepo.update(id, {
-        countryName: country_name,
-        region: region_id,
+        countryName: countryName,
+        region: regionId,
       });
       return countries;
     } catch (error) {
